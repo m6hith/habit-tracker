@@ -1,14 +1,29 @@
 .insights {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
 }
 
-.insights h3 {
+.stat-card {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 24px;
+  border-radius: 16px;
+  color: white;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-6px);
+}
+
+.stat-card h3 {
+  color: #c7d2fe;
   margin-bottom: 10px;
 }
 
-.insights p {
-  font-size: 15px;
-  color: #444;
+.stat-card p {
+  font-size: 32px;
+  font-weight: bold;
 }

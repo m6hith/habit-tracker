@@ -1,0 +1,16 @@
+.calendar .days {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.day {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #e5e7eb;
+}
+
+.day.active {
+  background: var(--primary-solid);
+}

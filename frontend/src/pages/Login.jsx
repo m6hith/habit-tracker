@@ -12,9 +12,16 @@ const Login = () => {
 
   const submit = async (e) => {
     e.preventDefault();
-    const res = await API.post("/auth/login", { email, password });
-    login(res.data.token);
-    navigate("/dashboard");
+    try {
+      const res = await API.post("/auth/login", { email, password });
+      console.log("LOGIN RESPONSE:", res.data);
+
+      login(res.data.token);
+      navigate("/dashboard");
+    } catch (err) {
+      console.error("LOGIN ERROR:", err);
+      alert(err.response?.data?.message || err.message || "Login failed");
+    }
   };
 
   return (

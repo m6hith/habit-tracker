@@ -11,8 +11,14 @@ const Register = () => {
 
   const submit = async (e) => {
     e.preventDefault();
-    await API.post("/auth/register", { name, email, password });
-    navigate("/");
+    try {
+      const res = await API.post("/auth/register", { name, email, password });
+      console.log("REGISTER RESPONSE:", res.data);
+      navigate("/");
+    } catch (err) {
+      console.error("REGISTER ERROR:", err);
+      alert(err.response?.data?.message || err.message || "Register failed");
+    }
   };
 
   return (

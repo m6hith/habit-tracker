@@ -1,13 +1,16 @@
 import "./Dashboard.css";
 import { useEffect, useState } from "react";
 import API from "../services/api";
+
 import Navbar from "../components/Navbar";
-import HabitCard from "../components/HabitCard";
+import Sidebar from "../components/Sidebar";
 import CreateHabit from "../components/CreateHabit";
-import Insights from "../components/Insights";
+import HabitCard from "../components/HabitCard";
+import CalendarMini from "../components/CalendarMini";
 
 const Dashboard = () => {
   const [habits, setHabits] = useState([]);
+  const [active, setActive] = useState("create");
 
   const loadHabits = async () => {
     const res = await API.get("/habits");
@@ -22,29 +25,22 @@ const Dashboard = () => {
     <>
       <Navbar />
 
-      <div className="dashboard">
-        <h1 className="dashboard-title">Your Habits</h1>
+      <div className="layout">
+        <Sidebar active={active} setActive={setActive} />
 
-        <div className="section">
-          <CreateHabit refresh={loadHabits} />
-        </div>
+        <main className="content">
+          {active === "create" && <CreateHabit refresh={loadHabits} />}
 
-        {habits.length === 0 ? (
-          <div className="empty-state">
-            <h3>No habits yet</h3>
-            <p>Start by creating your first habit 👆</p>
-          </div>
-        ) : (
-          <div className="habits-grid">
-            {habits.map((h) => (
-              <HabitCard key={h._id} habit={h} refresh={loadHabits} />
-            ))}
-          </div>
-        )}
+          {active === "habits" && (
+            <div className="grid">
+              {habits.map((h) => (
+                <HabitCard key={h._id} habit={h} refresh={loadHabits} />
+              ))}
+            </div>
+          )}
 
-        <div className="section">
-          <Insights />
-        </div>
+          {active === "insights" && <CalendarMini />}
+        </main>
       </div>
     </>
   );

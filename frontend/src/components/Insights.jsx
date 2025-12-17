@@ -1,21 +1,25 @@
 import "./Insights.css";
-import { useEffect, useState } from "react";
-import API from "../services/api";
 
-const Insights = () => {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    API.get("/insights").then((res) => setData(res.data));
-  }, []);
-
-  if (!data) return null;
+const Insights = ({ habits }) => {
+  const total = habits.length;
+  const completed = habits.filter((h) => h.streak > 0).length;
 
   return (
     <div className="insights">
-      <h3>Insights</h3>
-      <p>Total Habits: {data.totalHabits}</p>
-      <p>Best Streak: {data.bestStreak}</p>
+      <div className="stat-card">
+        <h3>Total Habits</h3>
+        <p>{total}</p>
+      </div>
+
+      <div className="stat-card">
+        <h3>Active Habits</h3>
+        <p>{completed}</p>
+      </div>
+
+      <div className="stat-card">
+        <h3>Consistency</h3>
+        <p>{total ? Math.round((completed / total) * 100) : 0}%</p>
+      </div>
     </div>
   );
 };
