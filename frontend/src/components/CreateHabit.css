@@ -1,0 +1,27 @@
+.create-habit {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.create-habit h3 {
+  width: 100%;
+}
+
+.create-habit input {
+  flex: 1;
+  min-width: 180px;
+  padding: 10px;
+}
+
+.create-habit button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+}

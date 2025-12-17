@@ -1,0 +1,23 @@
+.navbar {
+  background: #2563eb;
+  color: white;
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.navbar h3 {
+  font-size: 18px;
+}
+
+.navbar button {
+  background: white;
+  color: #2563eb;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+}
